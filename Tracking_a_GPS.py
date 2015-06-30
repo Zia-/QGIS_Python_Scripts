@@ -1,6 +1,8 @@
 import ast
 import requests
 
+
+
 response = requests.get('http://160.75.81.195:8080/postgis/pgr_aStarFromAtoB_without_SessionID/?long_st=28.4&lat_st=41.093&long_end=29.023&lat_end=41.0432')
 print (response.status_code)
 
@@ -20,3 +22,5 @@ for j in range(len(geojson_dict['features'])):
 
 vectorLyr.updateExtents()
 QgsMapLayerRegistry.instance().addMapLayer(vectorLyr)
+
+
