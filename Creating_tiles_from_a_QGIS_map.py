@@ -14,6 +14,7 @@ from qgis.gui import *
 import qtiles
 import random 
 
+#function to generate random colors
 def randomColor(mix=(255,255,255)):
     red = random.randrange(0,256)
     green = random.randrange(0,256)
@@ -33,6 +34,7 @@ def run_script(iface):
     features = layer.getFeatures()
     categories = []
     
+    #generate color symbols
     for feature in features:
         country = feature[field]
         sym = QgsSymbolV2.defaultSymbol(layer.geometryType())
@@ -44,7 +46,8 @@ def run_script(iface):
     renderer = QgsCategorizedSymbolRendererV2(field, categories)
     layer.setRendererV2(renderer)
     QgsMapLayerRegistry.instance().addMapLayer(layer)
-
+    
+    #prepare variables for qtiles method
     canvas = iface.mapCanvas()
     layers = canvas.mapSettings().layers()
     extent = canvas.extent()
@@ -62,6 +65,7 @@ def run_script(iface):
     mapUrl = False
     viewer = True
     
+    #this message is not poping up though after the tiling execution
     def done():
         #print 'finished'
         QgsMessageLog.logMessage("This is a message from the Python Console", "Python Console")

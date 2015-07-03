@@ -16,9 +16,8 @@ def run_script(iface):
     uri = 'http://maps.itu.edu.tr:8082/geoserver/topp/ows?' + urllib.unquote(urllib.urlencode(params))
     vlayer = QgsVectorLayer( uri, "my_table", "ogr" )
     
-    #Raster layer. Important. don't name 'final' as a 'layers' name. I had enough issue using the following 'urlWithParams'.
-    #.../geoserver/localhost/wms&format=image/png&layers=final&styles=&crs...
-    urlWithParams = "url=http://maps.itu.edu.tr:8082/geoserver/localhost/wms&format=image/png&layers=campus_maslak&styles=&crs=EPSG:4326"
+    #Raster layer
+    urlWithParams = "url=http://maps.itu.edu.tr:8082/geoserver/localhost/wms&format=image/png&layers=final&styles=&crs=EPSG:4326"
     rlayer = QgsRasterLayer(urlWithParams, 'DEM', 'wms')
     
     #Adding layers to the map
