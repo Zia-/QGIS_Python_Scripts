@@ -6,6 +6,7 @@ import PyQt4.QtGui
 import urllib
 
 def run_script(iface):
+    #Vector layer 
     params = {
         'service': 'WFS',
         'version': '1.0.0',
@@ -15,7 +16,9 @@ def run_script(iface):
     uri = 'http://maps.itu.edu.tr:8082/geoserver/topp/ows?' + urllib.unquote(urllib.urlencode(params))
     vlayer = QgsVectorLayer( uri, "my_table", "ogr" )
     
+    #Raster layer
     urlWithParams = "url=http://maps.itu.edu.tr:8082/geoserver/sf/wms&format=image/png&layers=sfdem&styles=&crs=EPSG:26713"
     rlayer = QgsRasterLayer(urlWithParams, 'DEM', 'wms')
     
+    #Adding layers to the map
     QgsMapLayerRegistry.instance().addMapLayers([rlayer, vlayer])
